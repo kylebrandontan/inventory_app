@@ -14,8 +14,6 @@ Layout/SpaceBeforeFirstArg:
 Lint/AmbiguousBlockAssociation:
   Exclude:
     - spec/**/*
-Metrics/AbcSize:
-  Max: 35
 Metrics/BlockLength:
   CountComments: false
   Max: 25
