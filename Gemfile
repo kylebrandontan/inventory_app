@@ -40,10 +40,11 @@ group :development, :test do
   gem 'rspec'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
-  # Ruby linter
   gem 'rubocop'
   gem 'rubocop-performance'
   gem 'rubocop-rails'
+  gem 'faker'
+  gem 'factory_bot_rails'
 end
 
 group :development do
