@@ -26,13 +26,10 @@ Metrics/BlockNesting:
   Max: 4
 Metrics/ClassLength:
   CountComments: false
-  Max: 200
 Metrics/MethodLength:
   CountComments: false
-  Max: 25
 Metrics/ModuleLength:
   CountComments: false
-  Max: 200
   Exclude:
     - "**/*_spec.rb"
 Layout/LineLength:
@@ -45,7 +42,7 @@ Metrics/ParameterLists:
   Max: 5
   CountKeywordArgs: true
 Metrics/PerceivedComplexity:
-  Max: 12
+  Max: 10
 Style/FrozenStringLiteralComment:
   Enabled: false
 Style/ModuleFunction:
