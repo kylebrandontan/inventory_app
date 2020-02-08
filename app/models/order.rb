@@ -4,7 +4,6 @@ class Order < ApplicationRecord
   has_many :products, through: :order_items
 
   validates :customer_name, presence: true
-  validates :uuid, presence: true, uniqueness: true
 
   before_validation :assign_uuid
 
