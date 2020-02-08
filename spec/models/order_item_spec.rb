@@ -12,6 +12,6 @@ RSpec.describe OrderItem, type: :model do
     subject(:order_item) { create(:order_item)}
 
     it { is_expected.to belong_to(:order) }
-    it { is_expected.to belong_to(:product)}
+    it { is_expected.to belong_to(:product) }
   end
 end

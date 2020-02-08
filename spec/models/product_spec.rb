@@ -14,5 +14,7 @@ RSpec.describe Product, type: :model do
 
     it { is_expected.to have_many(:stocks) }
     it { is_expected.to have_many(:warehouses) }
+    it { is_expected.to have_many(:order_items) }
+    it { is_expected.to have_many(:orders) }
   end
 end
