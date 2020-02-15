@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe 'Index of all Products page', type: :feature do
-  it 'has a table of products' do
+RSpec.describe 'Index of all Products page', type: :system do
+  it 'has a table of products', :js do
     create_list(:product, 4)
     product = create(:product, sku: 'SKU-001', name: 'Kobes')
 
@@ -20,9 +20,9 @@ RSpec.describe 'Index of all Products page', type: :feature do
 
     page.find("table tbody tr#product--#{product.id} td#product--#{product.id}_actions .delete").click
 
-    # text = page.browser.switch_to.alert.text
+    text = page.driver.browser.switch_to.alert.text
 
-    expect(text).to eq("Are you sure you want to delete this product?")
+    expect(text).to eq('Are you sure you want to delete this product?')
   end
 
   private

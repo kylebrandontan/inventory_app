@@ -8,6 +8,7 @@ require File.expand_path('../config/environment', __dir__)
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 require 'support/factory_bot'
+require 'webdrivers/chromedriver'
 require 'support/capybara'
 
 Shoulda::Matchers.configure do |config|
@@ -16,6 +17,11 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+# Capybara.register_driver :selenium do |app|
+#     Capybara::Selenium::Driver.new(app, :browser => :chrome)
+#   end
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
