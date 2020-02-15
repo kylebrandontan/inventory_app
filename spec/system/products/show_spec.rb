@@ -6,13 +6,13 @@ RSpec.describe 'Shows the Product page', type: :system do
 
     visit "/products/#{product.id}"
 
-    expect(page).to have_attribute_for('sku', para_sa: product)
-    expect(page).to have_attribute_for('name', para_sa: product)
+    expect(page).to have_attribute_for('sku', value: 'CAS-012', record: product)
+    expect(page).to have_attribute_for('name', value: 'Casio Watch', record: product)
   end
 
   private
 
-  def have_attribute_for(name, para_sa:)
-    have_css("#product--#{para_sa.id}_#{name}", text: value)
+  def have_attribute_for(name, value:, record:)
+    have_css("#product--#{record.id}_#{name}", text: value)
   end
 end
