@@ -7,11 +7,11 @@ class Order < ApplicationRecord
 
   before_validation :assign_uuid
 
+  private
 
-private
-
-def assign_uuid
+  def assign_uuid
     return unless new_record? || uuid.empty?
+
     generated_uuid = ''
     presence = true
     while presence == true
