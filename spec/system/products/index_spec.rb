@@ -8,6 +8,7 @@ RSpec.describe 'Index of all Products page', type: :system do
     visit '/products'
 
     expect(page).to have_a_products_table
+    expect(page).to have_a_new_products_button
     expect(page).to have_products_with(count: 5)
     expect(page).to have_table_header_with(text: 'SKU')
     expect(page).to have_table_header_with(text: 'Name')
@@ -29,6 +30,10 @@ RSpec.describe 'Index of all Products page', type: :system do
 
   def have_a_products_table
     have_css('table#products-table')
+  end
+
+  def have_a_new_products_button
+    have_link('New Product', href: '/products/new')
   end
 
   def have_products_with(count:)
