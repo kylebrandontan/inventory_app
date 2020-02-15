@@ -1,24 +1,16 @@
 class ProductsController < ApplicationController
+  before_action :assign_product, only: %i[show edit update]
+
   def index
     @products = Product.all
   end
 
-  def show
-    @product = Product.find(params[:id])
-  end
+  def show; end
 
-  def edit
-  end
-
-  def destroy
-  end
+  def edit; end
 
   def new
     @product = Product.new
-  end
-
-  def product_params
-    params.require(:product).permit(:name, :sku)
   end
 
   def create
@@ -31,5 +23,29 @@ class ProductsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def update
+    if @product.update(product_params)
+      flash.notice = 'Successfully updated product.'
+
+      redirect_to product_path(@product)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+  end
+
+
+private
+
+  def assign_product
+    @product = Product.find(params[:id])
+  end
+
+  def product_params
+    params.require(:product).permit(:name, :sku)
   end
 end
