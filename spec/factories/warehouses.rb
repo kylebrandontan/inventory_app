@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :warehouse do
-    street { "MyString" }
-    city { "MyString" }
-    province { "MyString" }
+    street { Faker::Address.street_address }
+    city { Faker::Address.city }
+    province { Faker::Address.state }
   end
 end

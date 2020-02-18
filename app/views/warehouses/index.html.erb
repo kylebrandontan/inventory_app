@@ -1,0 +1,30 @@
+<h1>Warehouses</h1>
+
+<table id = "warehouse-table">
+  <thead>
+    <tr>
+      <th>Street</th>
+      <th>City</th>
+      <th>Province</th>
+      <th>Updated At</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @warehouses.each do |warehouse| %>
+    <tr id = "warehouse--<%= warehouse.id %>">
+      <td id = "warehouse--<%= warehouse.id %>_street">
+        <%= warehouse.street %>
+      </td>
+      <td id = "warehouse--<%= warehouse.id %>_city">
+        <%= warehouse.city %>
+      </td>
+      <td id = "warehouse--<%= warehouse.id %>_province">
+        <%= warehouse.province %>
+      </td>
+      <td id = "warehouse--<%= warehouse.id %>_updated_at">
+        <%= warehouse.updated_at.strftime('%m-%d-%Y') %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
