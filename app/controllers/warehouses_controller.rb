@@ -34,15 +34,14 @@ class WarehousesController < ApplicationController
       render :edit
     end
   end
-#
-#   def destroy
-#     @product.destroy!
-#
-#     flash.notice = "Successfully deleted product #{@product.id}."
-#     redirect_to products_path
-#   end
-#
-#
+
+  def destroy
+    @warehouse.destroy!
+
+    flash.notice = "Successfully deleted warehouse #{@warehouse.id}."
+    redirect_to warehouses_path
+  end
+
 private
 
   def assign_warehouse
