@@ -6,24 +6,24 @@ class WarehousesController < ApplicationController
   end
 
   def show; end
-#
-#   def edit; end
-#
-#   def new
-#     @product = Product.new
-#   end
-#
-#   def create
-#     @product = Product.new(product_params)
-#
-#     if @product.save
-#       flash.notice = 'Successfully created a product.'
-#
-#       redirect_to product_path(@product)
-#     else
-#       render :new
-#     end
-#   end
+
+  def edit; end
+
+  def new
+    @warehouse = Warehouse.new
+  end
+
+  def create
+    @warehouse = Warehouse.new(warehouse_params)
+
+    if @warehouse.save
+      flash.notice = 'Successfully created a warehouse.'
+
+      redirect_to warehouse_path(@warehouse)
+    else
+      render :new
+    end
+  end
 #
 #   def update
 #     if @product.update(product_params)
