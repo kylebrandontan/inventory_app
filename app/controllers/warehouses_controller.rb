@@ -24,16 +24,16 @@ class WarehousesController < ApplicationController
       render :new
     end
   end
-#
-#   def update
-#     if @product.update(product_params)
-#       flash.notice = 'Successfully updated product.'
-#
-#       redirect_to product_path(@product)
-#     else
-#       render :edit
-#     end
-#   end
+
+  def update
+    if @warehouse.update(warehouse_params)
+      flash.notice = 'Successfully updated warehouse.'
+
+      redirect_to warehouse_path(@warehouse)
+    else
+      render :edit
+    end
+  end
 #
 #   def destroy
 #     @product.destroy!

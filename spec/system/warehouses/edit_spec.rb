@@ -10,34 +10,37 @@ RSpec.describe 'Edit warehouse page', type: :system do
     expect(page).to have_value_of("Manila", attr: 'city')
     expect(page).to have_value_of("NCR", attr: 'province')
 
-    fill_in_warehouse_field('name', with: 'Sony')
-    fill_in_warehouse_field('sku', with: 'SNY-65-LED')
+    fill_in_warehouse_field('street', with: 'Warbler')
+    fill_in_warehouse_field('city', with: 'QC')
+    fill_in_warehouse_field('province', with: 'NCR')
     submit_form
 
-    #
-    expect(page).to have_attribute_of('name', value: 'Sony', record: warehouse)
-    expect(page).to have_attribute_of('sku', value: 'SNY-65-LED', record: warehouse)
+    expect(page).to have_attribute_of('street', value: 'Warbler', record: warehouse)
+    expect(page).to have_attribute_of('city', value: 'QC', record: warehouse)
+    expect(page).to have_attribute_of('province', value: 'NCR', record: warehouse)
     expect(page).to have_a_success_message
   end
 
   it 'shows me test errors' do
-    create(:warehouse, sku: 'PROD-001')
+    # create(:warehouse, street: 'Sparrow', city: 'QC' )
     warehouse = create(:warehouse)
 
-    visit "/products/#{product.id}/edit"
-    fill_in_warehouse_field('name', with: '')
-    fill_in_warehouse_field('sku', with: '')
+    visit "/warehouses/#{warehouse.id}/edit"
+    fill_in_warehouse_field('street', with: '')
+    fill_in_warehouse_field('city', with: '')
+    fill_in_warehouse_field('province', with: '')
     submit_form
 
-    expect(page).to show_error_for('name', message: "can't be blank")
-    expect(page).to show_error_for('sku', message: "can't be blank")
+    expect(page).to show_error_for('street', message: "can't be blank")
+    expect(page).to show_error_for('city', message: "can't be blank")
+    expect(page).to show_error_for('province', message: "can't be blank")
 
-    within('#warehouse-form') do
-      fill_in_warehouse_field('sku', with: 'PROD-001')
-      submit_form
-    end
-
-    expect(page).to show_error_for('sku', message: "has already been taken")
+    # within('#warehouse-form') do
+    #   fill_in_warehouse_field('sku', with: 'PROD-001')
+    #   submit_form
+    # end
+    #
+    # expect(page).to show_error_for('sku', message: "has already been taken")
   end
 
   private
@@ -46,7 +49,7 @@ RSpec.describe 'Edit warehouse page', type: :system do
     have_field("warehouse_#{attr}", with: value)
   end
 
-  def fill_in_product_field(name, with:)
+  def fill_in_warehouse_field(name, with:)
     page.find("#warehouse_#{name}").fill_in(with: with)
   end
 
@@ -59,7 +62,7 @@ RSpec.describe 'Edit warehouse page', type: :system do
   end
 
   def have_a_success_message
-    have_text('Successfully updated product.')
+    have_text('Successfully updated warehouse.')
   end
 
   def show_error_for(name, message:)
