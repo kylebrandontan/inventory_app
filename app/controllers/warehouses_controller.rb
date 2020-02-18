@@ -1,12 +1,11 @@
 class WarehousesController < ApplicationController
-  # before_action :assign_warehouse, only: %i[show edit update destroy]
+  before_action :assign_warehouse, only: %i[show edit update destroy]
 
   def index
     @warehouses = Warehouse.all
   end
-end
 
-#   def show; end
+  def show; end
 #
 #   def edit; end
 #
@@ -44,13 +43,13 @@ end
 #   end
 #
 #
-# private
-#
-#   def assign_product
-#     @product = Product.find(params[:id])
-#   end
-#
-#   def product_params
-#     params.require(:product).permit(:name, :sku)
-#   end
-# end
+private
+
+  def assign_warehouse
+    @warehouse = Warehouse.find(params[:id])
+  end
+
+  def warehouse_params
+    params.require(:warehouse).permit(:street, :city, :province)
+  end
+end

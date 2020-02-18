@@ -11,13 +11,14 @@ RSpec.describe 'Index of all Warehouses page', type: :system do
     expect(page).to have_a_warehouse_table
     # expect(page).to have_a_new_warehouses_button
     expect(page).to have_warehouses_with(count: 5)
-    expect(page).to have_table_header_with(text: 'Street')
+    expect(page).to have_table_header_with(text: '  Street')
     expect(page).to have_table_header_with(text: 'City')
     expect(page).to have_table_header_with(text: 'Province')
     expect(page).to have_table_header_with(text: 'Updated At')
     expect(page).to have_column_for('street', value: 'Tabora', record: warehouse)
     expect(page).to have_column_for('city', value: 'Manila', record: warehouse)
     expect(page).to have_column_for('province', value: 'NCR', record: warehouse)
+    expect(page).to have_actions_of('Show', path: "/warehouses/#{warehouse.id}", record: warehouse)
   end
 
   private
@@ -40,5 +41,11 @@ RSpec.describe 'Index of all Warehouses page', type: :system do
 
   def have_column_for(name, value:, record:)
     have_css("table tbody tr#warehouse--#{record.id} td#warehouse--#{record.id}_#{name}", text: value)
+  end
+
+  def have_actions_of(title, path:, record:, **params)
+    within("table tbody tr#warehouse--#{record.id} td#warehouse--#{record.id}_actions") do
+      have_link(title, href: path)
+    end
   end
 end
