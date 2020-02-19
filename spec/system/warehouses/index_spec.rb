@@ -9,7 +9,7 @@ RSpec.describe 'Index of all Warehouses page', type: :system do
     visit '/warehouses'
 
     expect(page).to have_a_warehouse_table
-    # expect(page).to have_a_new_warehouses_button
+    expect(page).to have_a_new_warehouses_button
     expect(page).to have_warehouses_with(count: 5)
     expect(page).to have_table_header_with(text: 'Street')
     expect(page).to have_table_header_with(text: 'City')

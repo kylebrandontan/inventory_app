@@ -12,6 +12,16 @@ RSpec.describe 'Shows the Warehouse page', type: :system do
     expect(page).to have_attribute_for('province', value: 'NCR', record: warehouse)
   end
 
+  # it 'allows to go back to index page', type: :system do
+  #   warehouse = create(:warehouse, street: 'Tabora', city: 'Manila', province:
+  #   'NCR')
+  #   visit "/warehouses/#{warehouse.id}"
+
+    # page.click_button('btn btn-primary')
+
+    # expect(page).to visit "/warehouses"
+  # end
+
   private
 
   def have_attribute_for(name, value:, record:)

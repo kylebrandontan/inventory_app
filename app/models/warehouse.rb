@@ -1,7 +1,7 @@
 class Warehouse < ApplicationRecord
-  has_many :stocks
+  has_many :stocks, dependent: :destroy
   has_many :products, through: :stocks
-  has_many :orders
+  has_many :orders, dependent: :destroy
 
   validates :street, presence: true
   validates :city, presence: true
