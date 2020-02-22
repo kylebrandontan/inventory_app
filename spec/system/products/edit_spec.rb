@@ -4,6 +4,7 @@ RSpec.describe 'Edit product page', type: :system do
   it 'allows to edit a product' do
     product = create(:product, name: "Haier", sku: "HTV-32-LED")
 
+    sign_in_as_user
     visit "/products/#{product.id}/edit"
 
     #
@@ -25,6 +26,7 @@ RSpec.describe 'Edit product page', type: :system do
     create(:product, sku: 'PROD-001')
     product = create(:product)
 
+    sign_in_as_user
     visit "/products/#{product.id}/edit"
     fill_in_product_field('name', with: '')
     fill_in_product_field('sku', with: '')
