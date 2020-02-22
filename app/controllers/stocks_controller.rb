@@ -3,16 +3,6 @@ class StocksController < AdminController
   before_action :set_warehouse
   before_action :set_form_dependencies, only: %i[new edit create update]
 
-  # def index
-  #   @stocks = Stock.all
-  # end
-  #
-  # def show;  end
-  #
-  # def new
-  #   @stock = Stock.new
-  # end
-
   def create
     @stock = @warehouse.stocks.build(stock_params)
 
