@@ -1,4 +1,4 @@
-class ProductsController < ApplicationController
+class ProductsController < AdminController
   before_action :assign_product, only: %i[show edit update destroy]
 
   def index
@@ -42,8 +42,7 @@ class ProductsController < ApplicationController
     redirect_to products_path
   end
 
-
-private
+  private
 
   def assign_product
     @product = Product.find(params[:id])

@@ -1,4 +1,4 @@
-class WarehousesController < ApplicationController
+class WarehousesController < AdminController
   before_action :assign_warehouse, only: %i[show edit update destroy]
 
   def index
@@ -42,7 +42,7 @@ class WarehousesController < ApplicationController
     redirect_to warehouses_path
   end
 
-private
+  private
 
   def assign_warehouse
     @warehouse = Warehouse.find(params[:id])

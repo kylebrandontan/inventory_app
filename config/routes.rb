@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  root 'products#index'
+  root 'pages#homepage'
+
+  devise_for :users
 
   resources :products, only: %i[index show edit new create update destroy]
   resources :warehouses, only: %i[index show edit new create update destroy]

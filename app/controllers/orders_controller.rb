@@ -1,4 +1,4 @@
-class OrdersController < ApplicationController
+class OrdersController < AdminController
   before_action :set_order, only: %i[show edit update destroy]
 
   def index
