@@ -6,4 +6,8 @@ class Warehouse < ApplicationRecord
   validates :street, presence: true
   validates :city, presence: true
   validates :province, presence: true
+
+  def full_address
+    "#{street}, #{city}, #{province}"
+  end
 end
