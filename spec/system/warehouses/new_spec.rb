@@ -2,16 +2,17 @@ require 'rails_helper'
 
 RSpec.describe 'Create a warehouse page', type: :system do
   it 'allows me to create a new warehouse' do
+    sign_in_as_user
     visit '/warehouses/new'
 
     within('#warehouse-form') do
-      fill_in_warehouse_field('street', with: "Tabora")
-      fill_in_warehouse_field('city', with: "Manila")
-      fill_in_warehouse_field('province', with: "NCR")
+      fill_in_warehouse_field('street', with: 'Tabora')
+      fill_in_warehouse_field('city', with: 'Manila')
+      fill_in_warehouse_field('province', with: 'NCR')
       submit_form
     end
 
-    warehouse = Warehouse.find_by(street: "Tabora", city: "Manila", province: "NCR")
+    warehouse = Warehouse.find_by(street: 'Tabora', city: 'Manila', province: 'NCR')
 
     expect(page).to have_attribute_of('street', value: 'Tabora', record: warehouse)
     expect(page).to have_attribute_of('city', value: 'Manila', record: warehouse)
@@ -22,6 +23,7 @@ RSpec.describe 'Create a warehouse page', type: :system do
   it 'shows me test errors' do
     create(:warehouse, street: 'Tabora')
 
+    sign_in_as_user
     visit '/warehouses/new'
 
     submit_form
@@ -31,7 +33,7 @@ RSpec.describe 'Create a warehouse page', type: :system do
     expect(page).to show_error_for('province', message: "can't be blank")
   end
 
-private
+  private
 
   def fill_in_warehouse_field(name, with:)
     page.find("#warehouse_#{name}").fill_in(with: with)

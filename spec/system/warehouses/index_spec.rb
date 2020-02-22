@@ -6,6 +6,7 @@ RSpec.describe 'Index of all Warehouses page', type: :system do
     warehouse = create(:warehouse, street: 'Tabora', city: 'Manila', province:
     'NCR')
 
+    sign_in_as_user
     visit '/warehouses'
 
     expect(page).to have_a_warehouse_table
@@ -33,6 +34,7 @@ RSpec.describe 'Index of all Warehouses page', type: :system do
     warehouse = create(:warehouse, street: 'Tabora', city: 'Manila', province:
     'NCR')
 
+    sign_in_as_user
     visit '/warehouses'
 
     page.find("table tbody tr#warehouse--#{warehouse.id} td#warehouse--#{warehouse.id}_actions .delete").click
@@ -40,7 +42,6 @@ RSpec.describe 'Index of all Warehouses page', type: :system do
 
     expect(page).not_to have_column_for('street', value: 'Tabora', record: warehouse)
     expect(page).to have_a_success_delete_message(warehouse.id)
-
   end
 
   private
@@ -65,7 +66,7 @@ RSpec.describe 'Index of all Warehouses page', type: :system do
     have_css("table tbody tr#warehouse--#{record.id} td#warehouse--#{record.id}_#{name}", text: value)
   end
 
-  def have_actions_of(title, path:, record:, **params)
+  def have_actions_of(title, path:, record:, **_params)
     within("table tbody tr#warehouse--#{record.id} td#warehouse--#{record.id}_actions") do
       have_link(title, href: path)
     end

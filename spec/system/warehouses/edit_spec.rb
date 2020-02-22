@@ -2,13 +2,14 @@ require 'rails_helper'
 
 RSpec.describe 'Edit warehouse page', type: :system do
   it 'allows to edit a warehouse' do
-    warehouse = create(:warehouse, street: "Tabora", city: "Manila", province: "NCR")
+    warehouse = create(:warehouse, street: 'Tabora', city: 'Manila', province: 'NCR')
 
+    sign_in_as_user
     visit "/warehouses/#{warehouse.id}/edit"
 
-    expect(page).to have_value_of("Tabora", attr: 'street')
-    expect(page).to have_value_of("Manila", attr: 'city')
-    expect(page).to have_value_of("NCR", attr: 'province')
+    expect(page).to have_value_of('Tabora', attr: 'street')
+    expect(page).to have_value_of('Manila', attr: 'city')
+    expect(page).to have_value_of('NCR', attr: 'province')
 
     fill_in_warehouse_field('street', with: 'Warbler')
     fill_in_warehouse_field('city', with: 'QC')
@@ -25,6 +26,7 @@ RSpec.describe 'Edit warehouse page', type: :system do
     # create(:warehouse, street: 'Sparrow', city: 'QC' )
     warehouse = create(:warehouse)
 
+    sign_in_as_user
     visit "/warehouses/#{warehouse.id}/edit"
     fill_in_warehouse_field('street', with: '')
     fill_in_warehouse_field('city', with: '')

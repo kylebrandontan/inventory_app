@@ -5,6 +5,7 @@ RSpec.describe 'Shows the Warehouse page', type: :system do
     warehouse = create(:warehouse, street: 'Tabora', city: 'Manila', province:
     'NCR')
 
+    sign_in_as_user
     visit "/warehouses/#{warehouse.id}"
 
     expect(page).to have_attribute_for('street', value: 'Tabora', record: warehouse)
@@ -17,9 +18,9 @@ RSpec.describe 'Shows the Warehouse page', type: :system do
   #   'NCR')
   #   visit "/warehouses/#{warehouse.id}"
 
-    # page.click_button('btn btn-primary')
+  # page.click_button('btn btn-primary')
 
-    # expect(page).to visit "/warehouses"
+  # expect(page).to visit "/warehouses"
   # end
 
   private

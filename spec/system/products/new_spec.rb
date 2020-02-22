@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Create a product page', type: :system do
   it 'allows me to create a new product' do
+    sign_in_as_user
     visit '/products/new'
 
     within('#product-form') do
@@ -10,7 +11,7 @@ RSpec.describe 'Create a product page', type: :system do
       submit_form
     end
 
-    product = Product.find_by(name: "Huawei", sku: "HUA-001")
+    product = Product.find_by(name: 'Huawei', sku: 'HUA-001')
 
     expect(page).to have_attribute_of('name', value: 'Huawei', record: product)
     expect(page).to have_attribute_of('sku', value: 'HUA-001', record: product)
@@ -20,6 +21,7 @@ RSpec.describe 'Create a product page', type: :system do
   it 'shows me test errors' do
     create(:product, sku: 'PROD-001')
 
+    sign_in_as_user
     visit '/products/new'
 
     submit_form
@@ -32,10 +34,10 @@ RSpec.describe 'Create a product page', type: :system do
       submit_form
     end
 
-    expect(page).to show_error_for('sku', message: "has already been taken")
+    expect(page).to show_error_for('sku', message: 'has already been taken')
   end
 
-private
+  private
 
   def fill_in_product_field(name, with:)
     page.find("#product_#{name}").fill_in(with: with)
@@ -56,5 +58,4 @@ private
   def show_error_for(name, message:)
     have_css("#product_#{name}_errors .error", text: message)
   end
-
 end
