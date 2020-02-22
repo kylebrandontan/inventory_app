@@ -1,3 +1,8 @@
+#Show all available products for a warehouse with inventory count
+# Show all warehouses in products with inventory count
+# inventory count = stock count - order items quantity
+# warehouse, add inventory inside show
+
 require 'rails_helper'
 
 RSpec.describe 'Shows the Warehouse page', type: :system do
