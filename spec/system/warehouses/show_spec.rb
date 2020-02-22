@@ -7,6 +7,7 @@ require 'rails_helper'
 
 RSpec.describe 'Shows the Warehouse page', type: :system do
   it 'shows all warehouse information', :js do
+    sign_in_as_user
     warehouse = create(:warehouse, street: 'Tabora', city: 'Manila', province:
     'NCR')
 

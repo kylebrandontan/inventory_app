@@ -6,6 +6,7 @@ RSpec.describe 'Index of all Warehouses page', type: :system do
     warehouse = create(:warehouse, street: 'Tabora', city: 'Manila', province:
     'NCR')
 
+    sign_in_as_user
     visit '/warehouses'
 
     expect(page).to have_a_warehouse_table
@@ -33,6 +34,7 @@ RSpec.describe 'Index of all Warehouses page', type: :system do
     warehouse = create(:warehouse, street: 'Tabora', city: 'Manila', province:
     'NCR')
 
+    sign_in_as_user
     visit '/warehouses'
 
     page.find("table tbody tr#warehouse--#{warehouse.id} td#warehouse--#{warehouse.id}_actions .delete").click
@@ -46,7 +48,7 @@ RSpec.describe 'Index of all Warehouses page', type: :system do
   private
 
   def have_a_warehouse_table
-    have_css('table#warehouse-table')
+    have_css('table')
   end
 
   def have_a_new_warehouses_button
