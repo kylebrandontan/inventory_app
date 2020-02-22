@@ -1,4 +1,4 @@
-class OrdersController < ApplicationController
+class OrdersController < AdminController
   before_action :set_order, only: %i[show edit update destroy]
 
   def index
@@ -43,7 +43,7 @@ class OrdersController < ApplicationController
   def destroy
     @order.destroy!
     flash.notice = 'Successfully deleted order.'
-    
+
     redirect_to orders_path
   end
 

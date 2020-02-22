@@ -1,4 +1,4 @@
-class StocksController < ApplicationController
+class StocksController < AdminController
   before_action :set_stock, only: %i[show]
   before_action :set_form_dependencies, only: %i[new edit]
 

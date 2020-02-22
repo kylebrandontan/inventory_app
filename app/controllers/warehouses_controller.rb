@@ -1,4 +1,4 @@
-class WarehousesController < ApplicationController
+class WarehousesController < AdminController
   before_action :assign_warehouse, only: %i[show edit update destroy]
 
   def index

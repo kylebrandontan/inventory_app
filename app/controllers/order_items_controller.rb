@@ -1,4 +1,4 @@
-class OrderItemsController < ApplicationController
+class OrderItemsController < AdminController
   before_action :set_order
 
   def create
