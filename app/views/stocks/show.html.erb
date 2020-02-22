@@ -3,21 +3,21 @@
 <table class="table">
   <tbody>
     <tr>
-      <td>Street</td>
-      <td id="stock--<%= @stock.id %>_name">
-        <%= @stock.name %>
+      <td>Warehouse</td>
+      <td id="stock--<%= @stock.id %>_warehouse">
+        <%= @stock.warehouse.full_address %>
       </td>
     </tr>
     <tr>
-      <td>City</td>
-      <td id="stock--<%= @stock.id %>_sku">
-        <%= @stock.sku %>
+      <td>Product Name</td>
+      <td id="stock--<%= @stock.id %>_product">
+        <%= @stock.product.name %>
       </td>
     </tr>
     <tr>
-      <td>Province</td>
-      <td id="stock--<%= @stock.id %>_sku">
-        <%= @stock.sku %>
+      <td>Count</td>
+      <td id="stock--<%= @stock.id %>_count">
+        <%= @stock.count %>
       </td>
     </tr>
   </tbody>
