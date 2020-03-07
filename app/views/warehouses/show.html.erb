@@ -24,23 +24,18 @@
       </tr>
     </tbody>
   </table>
-
-  <%= render '/stocks/form', warehouse: @warehouse, products: @products, stock: @stock %>
-
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Product</th>
-        <th>Inventory Count</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @warehouse.products.each do |product| %>
-        <tr>
-          <td><%= product.name %></td>
-          <td><%= @warehouse.inventory_count(product) %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+<div class="container">
+  <%= react_component "Warehouse",
+    {
+      id: @warehouse.id,
+      products: @products.as_json(only: %i[name id]),
+      stocks: @warehouse.stocks.as_json(
+        only: %i[id count],
+        include: {
+          product: {
+            only: %i[sku name]
+          }
+        }
+      )
+    } %>
 </div>

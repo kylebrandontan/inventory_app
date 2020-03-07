@@ -4,14 +4,23 @@ class StocksController < AdminController
   before_action :set_form_dependencies, only: %i[new edit create update]
 
   def create
-    @stock = @warehouse.stocks.build(stock_params)
-
-    if @stock.save
-      flash.notice = 'Successfully added stock.'
-
-      redirect_to warehouse_path(@warehouse)
+    @stock = @warehouse.stocks.find_or_initialize_by(product_id: stock_params[:product_id].to_i)
+    if @stock.new_record?
+      @stock.count = stock_params[:count].to_i
     else
-      render :new
+      @stock.count += stock_params[:count].to_i
+    end
+    if @stock.save
+      render json: @stock.as_json(
+        only: %i[id count],
+        include: {
+          product: {
+            only: %i[sku name]
+          }
+        }
+      )
+    else
+      render json: { errors: @stock.errors }, status: :unprocessable_entity
     end
   end
 

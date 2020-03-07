@@ -69,32 +69,6 @@ class Order extends Component {
           </Button>
         </Alert>
       )}
-      <Form onSubmit={this.createOrderItem}>
-        <Form.Group>
-          <Form.Control
-            as="select"
-            onChange={e => this.setState({ productId: e.target.value })}
-            value={this.state.productId}
-          >
-            {_.map(this.props.products, product => (
-              <option value={product.id} key={product.id}>
-                {product.name}
-              </option>
-            ))}
-          </Form.Control>
-          <Form.Group>
-            <Form.Control
-              type="number"
-              placeholder="Qty"
-              value={this.state.qty}
-              onChange={e => this.setState({ qty: e.target.value })}
-            />
-          </Form.Group>
-        </Form.Group>
-        <Button type="submit" variant="success">
-          Add Order Item
-        </Button>
-      </Form>
       <Table striped hover>
         <thead>
           <tr>

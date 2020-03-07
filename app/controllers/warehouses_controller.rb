@@ -9,6 +9,11 @@ class WarehousesController < AdminController
     @stocks = @warehouse.stocks
     @stock = @warehouse.stocks.build
     @products = Product.all
+
+    respond_to do |format|
+      format.json { render json: @warehouse }
+      format.html
+    end
   end
 
   def edit; end
